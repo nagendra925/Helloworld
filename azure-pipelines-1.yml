@@ -13,6 +13,22 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+steps:
+- script: 
+          #!/bin/bash
+            valid=true
+            count=1
+            while [ $valid ]
+            do
+            echo $count
+            if [ $count -eq 5 ];
+            then
+            break
+            fi
+            ((count++))
+            done
+  displayName:bash while_example.sh
+
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
