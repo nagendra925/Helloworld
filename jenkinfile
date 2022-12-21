@@ -1,0 +1,26 @@
+pipeline {
+    agent none 
+    stages {
+    
+	stage('multiple jobs') {
+        parallel {
+        stage('Hello') {
+            agent {
+                label 'master'
+            }
+            steps {
+                echo 'Hello World'
+            }
+        }    
+        stage('Result') {
+            agent {
+                label 'Local_Node'
+            }
+            steps {
+                bat label: 'Result', script: 'echo \'this build run succeeded @ %date% %time%\''
+            }
+        }
+		}
+    }
+}
+}
